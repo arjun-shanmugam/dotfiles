@@ -24,7 +24,7 @@
   - zoxide
 
 - cask:
-  -kitty
+  - kitty
 
 - link:
   ~/.config/kitty: kitty
