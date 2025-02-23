@@ -1,35 +1,43 @@
 - defaults:
-  link:
-    relink: true
-  shell:
-    quiet: true
-  brew:
-    stdout: false
-  cask:
-    stdout: false
+    link:
+      relink: true
+      create: true
+    shell:
+      quiet: true
+    brew:
+      stdout: true
+    cask:
+      stdout: true
 - shell:
-  - description: Installing zoxide if not installed...
-    command: |
-      if ! command -v zoxide &> /dev/null
-      then
-        curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
-      fi
+    - description: Installing zoxide if not installed...
+      command: |
+        if ! command -v zoxide &> /dev/null
+        then
+          curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+        fi
 
 # mac-only setup
 - install-brew: true
 
 - brew:
-  - git
-  - neovim
-  - zoxide
+    - git
+    - neovim
+    - zoxide
+    - ripgrep
 
 - cask:
-  - kitty
+    - kitty
 
 - link:
-  ~/.config/kitty: kitty
-  ~/.config/nvim: nvim
-  ~/.gitconfig: git/.gitconfig
+    ~/.config/kitty: 
+        path: kitty
+        force: true
+    ~/.config/nvim:
+        path: nvim
+        force: true
+    ~/.gitconfig: 
+        path: git/.gitconfig
+        force: true
 
 
 
