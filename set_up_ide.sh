@@ -6,9 +6,9 @@ rm -rf /opt/nvim
 tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 
 # Update neovim config
-rm -rf /home/arjun.shanmugam/.config/nvim
-curl -L -o /home/arjun.shanmugam/.config/nvim.tar.gz https://github.com/arjun-shanmugam/dotfiles/raw/refs/heads/main/nvim.tar.gz
-tar -xzf /home/arjun.shanmugam/.config/nvim.tar.gz
+rm -rf /home/arjun.shanmugam/.local/state/nvim
+curl -L -o /home/arjun.shanmugam/.local/state/nvim.tar.gz https://github.com/arjun-shanmugam/dotfiles/raw/refs/heads/main/nvim.tar.gz
+tar -xzf /home/arjun.shanmugam/.local/state/nvim.tar.gz
 
 # Create alias 
 alias nvim='/opt/nvim-linux-x86_64/bin/nvim'
