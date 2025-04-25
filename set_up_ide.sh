@@ -14,5 +14,6 @@ cd ~
 
 # Create alias 
 alias nvim='/opt/nvim-linux-x86_64/bin/nvim'
+EXPORT VIRTUAL_ENV="${VIRTUAL_ENV_DIR}/310"
 
 
