@@ -13,7 +13,7 @@ tar -xzf /home/arjun.shanmugam/.local/state/nvim.tar.gz -C /home/arjun.shanmugam
 cd ~
 
 # Create alias 
-alias nvim='/opt/nvim-linux-x86_64/bin/nvim'
+alias nvim='source ${VIRTUAL_ENV_DIR}/python310/bin/activate && /opt/nvim-linux-x86_64/bin/nvim'
 export VIRTUAL_ENV="${VIRTUAL_ENV_DIR}/python310"
 
 
