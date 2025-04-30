@@ -20,4 +20,4 @@ export VIRTUAL_ENV="${VIRTUAL_ENV_DIR}/python310"
 # Install euporie notebook
 source ${VIRTUAL_ENV_DIR}/python310/bin/activate
 pip install euporie
-alias nb='python3 -m ipykernel install --name python310 && euporie-notebook'
+alias nb='python3 -m ipykernel install --user --name=python310 && euporie-notebook'
