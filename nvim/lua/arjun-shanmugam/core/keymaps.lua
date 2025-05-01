@@ -27,3 +27,16 @@ keymap.set("n", "<leader>tt", '<cmd>TermExec name="main" size=85 direction="vert
 keymap.set("t", "<esc>",  "<C-\\><C-n>", { desc = "Leave terminal mode" })
 keymap.set("n", "rr", "<cmd>ToggleTermSendCurrentLine<cr>", { desc = "Run current line"})
 keymap.set("v", "rr", "<cmd>ToggleTermSendVisualLines<cr>", { desc = "Run current lines"})
+
+-- Vim Doge (auto generate docstrings)
+
+-- Generate comment for current line
+keymap.set('n', '<Leader>d', '<Plug>(doge-generate)')
+
+-- Interactive mode comment todo-jumping
+keymap.set('n', '<TAB>', '<Plug>(doge-comment-jump-forward)')
+keymap.set('n', '<S-TAB>', '<Plug>(doge-comment-jump-backward)')
+keymap.set('i', '<TAB>', '<Plug>(doge-comment-jump-forward)')
+keymap.set('i', '<S-TAB>', '<Plug>(doge-comment-jump-backward)')
+keymap.set('x', '<TAB>', '<Plug>(doge-comment-jump-forward)')
+keymap.set('x', '<S-TAB>', '<Plug>(doge-comment-jump-backward)')
