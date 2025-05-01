@@ -17,7 +17,6 @@ cd ~
 alias nvim='source ${VIRTUAL_ENV_DIR}/python310/bin/activate && /opt/nvim-linux-x86_64/bin/nvim'
 export VIRTUAL_ENV="${VIRTUAL_ENV_DIR}/python310"
 
-# Install euporie notebook
+# Install matplotlib kitty backend 
 source ${VIRTUAL_ENV_DIR}/python310/bin/activate
-pip install euporie
-alias nb='python3 -m ipykernel install --user --name=python310 && euporie-notebook'
+pip install kitcat
