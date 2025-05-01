@@ -17,6 +17,8 @@ cd ~
 alias nvim='source ${VIRTUAL_ENV_DIR}/python310/bin/activate && /opt/nvim-linux-x86_64/bin/nvim'
 export VIRTUAL_ENV="${VIRTUAL_ENV_DIR}/python310"
 
-# Install matplotlib kitty backend 
-source ${VIRTUAL_ENV_DIR}/python310/bin/activate
-pip install kitcat
+# Install tpix 
+cd
+wget https://github.com/jesvedberg/tpix/releases/download/v1.0.0/tpix-1.0.0-x86_64-linux.tar.gz
+tar xzf tpix-1.0.0-x86_64-linux.tar.gz
+alias tpix='~/tpix'
