@@ -21,4 +21,4 @@ export VIRTUAL_ENV="${VIRTUAL_ENV_DIR}/python310"
 cd
 wget https://github.com/jesvedberg/tpix/releases/download/v1.0.0/tpix-1.0.0-x86_64-linux.tar.gz
 tar xzf tpix-1.0.0-x86_64-linux.tar.gz
-alias tpix='~/tpix -W 2000'
+alias tpix='~/tpix'
