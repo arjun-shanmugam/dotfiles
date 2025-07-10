@@ -9,7 +9,7 @@ return {
     opts = {
     },                                                -- See Configuration section for options
     config = function()
-      require('render-markdown').setup({
+      require('CopilotChat').setup({
         window = {
           layout = 'float',
           relative = 'cursor',
