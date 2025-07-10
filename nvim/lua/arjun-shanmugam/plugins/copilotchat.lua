@@ -21,14 +21,7 @@ return {
       { "<leader>zd", ":CopilotChatDocs<CR>",     mode = "v", desc = "Generate Docs" },
       { "<leader>zt", ":CopilotChatTests<CR>",    mode = "v", desc = "Generate Tests" },
     },
-    config = function()
-      require('CopilotChat').setup({
-        contexts = {
-          files = { '#files:`**/*.py`' }
-        }
 
-      })
-    end
 
   },
 
