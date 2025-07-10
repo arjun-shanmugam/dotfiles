@@ -8,7 +8,9 @@ return {
     build = "make tiktoken",                          -- Only on MacOS or Linux
     opts = {
       window = {
-        layout = 'horizontal'
+        layout = 'horizontal',
+        height = .2,
+        zindex = -100
       }
     }, -- See Configuration section for options
     keys = {
@@ -20,6 +22,14 @@ return {
       { "<leader>zd", ":CopilotChatDocs<CR>",     mode = "v", desc = "Generate Docs" },
       { "<leader>zt", ":CopilotChatTests<CR>",    mode = "v", desc = "Generate Tests" },
     },
+    config = function()
+      require('CopilotChat').setup({
+        contexts = {
+          files = { '#files:`**/*.py`' }
+        }
+
+      })
+    end
 
   },
 
