@@ -22,14 +22,19 @@ return {
       highlight_headers = false,
       separator = '---',
       error_header = '> [!ERROR] Error',
-      window = {
-        layout = 'float',
-        relative = 'cursor',
-        width = 1,
-        height = 0.4,
-        row = 1
-      }
+
     }, -- See Configuration section for options
+    config = function()
+      require('render-markdown').setup({
+        window = {
+          layout = 'float',
+          relative = 'cursor',
+          width = 1,
+          height = 0.4,
+          row = 1
+        }
+      })
+    end
   },
 
 }
