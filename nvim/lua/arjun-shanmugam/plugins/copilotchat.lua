@@ -9,6 +9,9 @@ return {
     opts = {
       -- See Configuration section for options
     },
+    contexts = {
+      files={ "**/*.py" }
+    },
     keys = {
       { "<leader>zc", ":CopilotChat<CR>", mode = "n", desc = "Chat with Copilot" },
       { "<leader>ze", ":CopilotChatExplain<CR>", mode = "v", desc = "Explain Code" },

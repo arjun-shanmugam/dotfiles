@@ -41,3 +41,7 @@ keymap.set('i', '<TAB>', '<Plug>(doge-comment-jump-forward)')
 keymap.set('i', '<S-TAB>', '<Plug>(doge-comment-jump-backward)')
 keymap.set('x', '<TAB>', '<Plug>(doge-comment-jump-forward)')
 keymap.set('x', '<S-TAB>', '<Plug>(doge-comment-jump-backward)')
+
+-- Copilot
+keymap.set("n", "<leader>zc", ":CopilotChat<CR>", { desc = "Chat with Copilot" })
+keymap.set("v", "<leader>zv", ":CopilotChat<CR>", { desc = "Chat with Copilot" })
