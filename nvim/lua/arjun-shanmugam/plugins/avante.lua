@@ -68,4 +68,4 @@ return {
       ft = { "markdown", "Avante" },
     },
   },
-} }
+} 
