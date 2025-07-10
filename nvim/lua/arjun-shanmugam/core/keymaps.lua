@@ -23,7 +23,7 @@ keymap.set("n", "<leader>lf", vim.lsp.buf.format, {desc = "Format buffer"})
 keymap.set("n", "<leader>lr", vim.lsp.buf.rename, {desc = "Rename symbol"})
 
 -- Terminal
-keymap.set("n", "<leader>tp", '<cmd>TermExec name="python" size=85 direction="vertical" cmd="source ${VIRTUAL_ENV}/bin/deactivate && source ${VIRTUAL_ENV}/bin/activate && ipython"<CR>', { desc = "Open iPython" })
+keymap.set("n", "<leader>tp", '<cmd>TermExec name="python" size=85 direction="vertical" cmd="source ${VIRTUAL_ENV}/bin/deactivate && source ${VIRTUAL_ENV}/bin/activate && cd brand_data_science && ipython"<CR>', { desc = "Open iPython" })
 keymap.set("n", "<leader>tt", '<cmd>TermExec name="main" size=85 direction="vertical" cmd=" " <cr>', { desc = "Open Terminal" })
 keymap.set("t", "<esc>",  "<C-\\><C-n>", { desc = "Leave terminal mode" })
 keymap.set("n", "rr", "<cmd>ToggleTermSendCurrentLine<cr>", { desc = "Run current line"})
