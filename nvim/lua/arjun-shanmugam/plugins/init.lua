@@ -31,9 +31,9 @@ return {
   -- Depending on your nvim distro or config you may need to make the loading not lazy
 lazy=false,
 	},
-  {
-    "github/copilot.vim"
-  },
+  --{
+    --"github/copilot.vim"
+  --},
 {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite

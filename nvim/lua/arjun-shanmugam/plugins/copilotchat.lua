@@ -2,7 +2,7 @@ return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
-      { "github/copilot.vim" },                       -- or zbirenbaum/copilot.lua
+      { "zbirenbaum/copilot.lua" },                       -- or zbirenbaum/copilot.lua
       { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
     },
     build = "make tiktoken",                          -- Only on MacOS or Linux
@@ -21,7 +21,6 @@ return {
       { "<leader>zd", ":CopilotChatDocs<CR>",     mode = "v", desc = "Generate Docs" },
       { "<leader>zt", ":CopilotChatTests<CR>",    mode = "v", desc = "Generate Tests" },
     },
-    -- See Commands section for default commands if you want to lazy load on them
     highlight_headers = false,
     separator = '---',
     error_header = '> [!ERROR] Error',
@@ -30,7 +29,7 @@ return {
       relative = 'cursor',
       width = 1,
       height = 0.4,
-      row = 1,
+      row = 1
     }
   },
 }
