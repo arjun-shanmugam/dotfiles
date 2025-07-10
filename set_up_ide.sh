@@ -17,8 +17,23 @@ cd ~
 alias nvim='source ${VIRTUAL_ENV_DIR}/python310/bin/activate && /opt/nvim-linux-x86_64/bin/nvim'
 export VIRTUAL_ENV="${VIRTUAL_ENV_DIR}/python310"
 
+# Add copilot token
+
+
 # Install tpix 
 cd
 wget https://github.com/jesvedberg/tpix/releases/download/v1.0.0/tpix-1.0.0-x86_64-linux.tar.gz
 tar xzf tpix-1.0.0-x86_64-linux.tar.gz
 alias tpix='~/tpix'
+
+# Install Node JS
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+# in lieu of restarting the shell
+\. "$HOME/.nvm/nvm.sh"
+# Download and install Node.js:
+nvm install 22
+# Verify the Node.js version:
+node -v # Should print "v22.17.0".
+nvm current # Should print "v22.17.0".
+# Verify npm version:
+npm -v # Should print "10.9.2".
