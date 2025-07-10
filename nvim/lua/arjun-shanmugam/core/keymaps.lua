@@ -7,7 +7,8 @@ keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search higlights" })
 
 
 -- window management
-keymap.set("n", "<leader>wv", "<C-w>s", { desc = "Split window horizontally" })  -- split window horizontally 
+keymap.set("n", "<leader>wv", "<C-w>v", { desc = "Split window vertically" })  -- split window vertically 
+keymap.set("n", "<leader>wh", "<C-w>s", { desc = "Split window horizontally" })  -- split window horizontally 
 keymap.set("n", "<leader>we", "<C-w>=", { desc = "Make splits equal size"})  -- make split windows equal size
 keymap.set("n", "<leader>wx", "<cmd>close<CR>", { desc = "Close current split" })  -- close current split
 keymap.set("n", "<leader>ww", "<C-w>w", { desc = "Navigate between splits" }) 
