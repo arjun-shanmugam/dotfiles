@@ -1,1 +1,1 @@
-require('copilot').setup(opts = {})
+require('copilot').setup({})
