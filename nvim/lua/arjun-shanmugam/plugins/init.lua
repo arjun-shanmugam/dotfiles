@@ -42,6 +42,7 @@ lazy=false,
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {},
+    filetypes = { 'markdown', 'copilot-chat' }
 }
 
 
