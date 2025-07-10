@@ -16,6 +16,9 @@ return {
       { "<leader>zo", ":CopilotChatOptimize<CR>", mode = "v", desc = "Optimize Code" },
       { "<leader>zd", ":CopilotChatDocs<CR>", mode = "v", desc = "Generate Docs" },
       { "<leader>zt", ":CopilotChatTests<CR>", mode = "v", desc = "Generate Tests" },
+    },
+    window = {
+      layout = 'horizontal'
     }
   },
 
