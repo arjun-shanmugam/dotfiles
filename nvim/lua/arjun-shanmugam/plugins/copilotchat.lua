@@ -9,8 +9,7 @@ return {
     opts = {
       window = {
         layout = 'horizontal',
-        height = .2,
-        zindex = -100
+        height = .2
       }
     }, -- See Configuration section for options
     keys = {
