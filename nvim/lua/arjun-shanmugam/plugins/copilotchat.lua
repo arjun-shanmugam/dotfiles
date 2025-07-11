@@ -15,12 +15,8 @@ return {
         row = 70,
         col = 0
       }
-      --window = {
-      --  layout = 'horizontal',
-      -- height = .2,
-      --zindex = -100
-      -- }
-    }, -- See Configuration section for options
+
+    },
     keys = {
       { "<leader>zc", ":CopilotChat<CR>",         mode = "n", desc = "Chat with Copilot" },
       { "<leader>ze", ":CopilotChatExplain<CR>",  mode = "v", desc = "Explain Code" },
