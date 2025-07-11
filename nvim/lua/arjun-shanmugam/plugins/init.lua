@@ -32,5 +32,13 @@ return {
   },
 
 
-  { 'nvim-telescope/telescope-ui-select.nvim' }
+  { 'nvim-telescope/telescope-ui-select.nvim' },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({})
+    end,
+  }
 }
