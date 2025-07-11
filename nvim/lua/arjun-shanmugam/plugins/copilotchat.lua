@@ -9,12 +9,10 @@ return {
     opts = {
       window = {
         layout = 'float',
-        relative = 'editor', -- Anchor the window relative to the editor screen
-        width = 0.4,         -- 100% of the editor's width
-        height = 0.4,        -- 40% of the editor's height
-        -- Position the top of the window at 60% from the top of the editor,
-        -- effectively placing the 40% height window at the bottom.
-        row = 65,
+        relative = 'editor',
+        width = 0.4,
+        height = 0.4,
+        row = 70,
         col = 0
       }
       --window = {
