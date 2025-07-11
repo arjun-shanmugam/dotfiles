@@ -14,7 +14,7 @@ return {
             hide_during_completion = vim.g.ai_cmp,
             keymap = {
               accept = "<D-a>",
-              next = "<D-l>",
+              next = "<D-j>",
               prev = "<D-k>",
             },
           },
