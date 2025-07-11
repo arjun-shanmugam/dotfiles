@@ -14,7 +14,7 @@ return {
         height = 0.4,        -- 40% of the editor's height
         -- Position the top of the window at 60% from the top of the editor,
         -- effectively placing the 40% height window at the bottom.
-        row = 70,
+        row = 65,
         col = 0
       }
       --window = {
