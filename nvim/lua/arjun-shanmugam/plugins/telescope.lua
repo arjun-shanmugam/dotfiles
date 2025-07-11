@@ -27,7 +27,7 @@ return {
         --   codeactions = false,
         -- }
       }
-    },
+    }
   },
   config = function()
     local telescope = require("telescope")
