@@ -7,13 +7,13 @@ return {
         cmd = "Copilot",
         build = ":Copilot auth",
         event = "BufReadPost",
-        opts = {
-          panel = { enabled = false },
-          filetypes = {
-            markdown = true,
-            help = true,
-          },
-        },
+        -- opts = {
+        --   panel = { enabled = false },
+        --   filetypes = {
+        --     markdown = true,
+        --     help = true,
+        --   },
+        -- },
       },
       { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
     },
