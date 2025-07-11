@@ -8,10 +8,17 @@ return {
     build = "make tiktoken",                          -- Only on MacOS or Linux
     opts = {
       window = {
-        layout = 'horizontal',
-        height = .2,
-        zindex = -100
+        layout = 'float',
+        relative = 'cursor',
+        width = 1,
+        height = 0.4,
+        row = 1
       }
+      --window = {
+      --  layout = 'horizontal',
+      -- height = .2,
+      --zindex = -100
+      -- }
     }, -- See Configuration section for options
     keys = {
       { "<leader>zc", ":CopilotChat<CR>",         mode = "n", desc = "Chat with Copilot" },
