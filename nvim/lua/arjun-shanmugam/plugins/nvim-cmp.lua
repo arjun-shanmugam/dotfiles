@@ -13,7 +13,8 @@ return {
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "copilot" }, { name = "emoji" } }))
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources,
+        { { name = "copilot" }, { name = "emoji" }, { name = "nvim_lsp" } }))
     end,
   },
 
