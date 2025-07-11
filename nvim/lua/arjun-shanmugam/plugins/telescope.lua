@@ -24,6 +24,7 @@ return {
     })
 
     telescope.load_extension("fzf")
+    require('fzf-lua').register_ui_select()
 
     -- set keymaps
     local keymap = vim.keymap 
@@ -35,3 +36,5 @@ return {
     keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
   end,
 }
+
+

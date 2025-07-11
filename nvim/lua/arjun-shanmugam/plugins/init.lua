@@ -4,7 +4,6 @@ return {
     "folke/which-key.nvim",
     opts = {},
   },
-  { 'nvim-telescope/telescope-ui-select.nvim' },
   -- highlight todo comments
   {
     "folke/todo-comments.nvim",
