@@ -10,8 +10,7 @@ return {
         opts = {},
       },
     },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
+    opts = function()
       local cmp = require("cmp")
       return {
         sources = cmp.config.sources({
