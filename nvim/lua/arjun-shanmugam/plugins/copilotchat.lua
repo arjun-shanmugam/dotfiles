@@ -10,11 +10,11 @@ return {
       window = {
         layout = 'float',
         relative = 'editor', -- Anchor the window relative to the editor screen
-        width = 1,       -- 100% of the editor's width
+        width = .33,       -- 100% of the editor's width
         height = 0.4,    -- 40% of the editor's height
         -- Position the top of the window at 60% from the top of the editor,
         -- effectively placing the 40% height window at the bottom.
-        row = 0
+        row = .4
       }
       --window = {
       --  layout = 'horizontal',
