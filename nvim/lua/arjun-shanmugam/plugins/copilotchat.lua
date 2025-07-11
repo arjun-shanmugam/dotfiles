@@ -8,8 +8,6 @@ return {
         event = "InsertEnter",
         config = function()
           require("copilot").setup({
-            suggestion = { enabled = false} ,
-            panel = { enabled = false }
           })
         end,
       },                                              -- or zbirenbaum/copilot.lua
@@ -41,4 +39,3 @@ return {
   },
 
 }
-

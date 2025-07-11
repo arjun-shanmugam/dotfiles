@@ -31,16 +31,7 @@ return {
       require("copilot_cmp").setup()
     end
   },
-  {
-    "zbirenbaum/copilot.lua",
-    enabled = true,
-    cmd = "Copilot",
-    event = "InsertEnter",
-    opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = false },
-    },
-  },
+
 
 
 }
