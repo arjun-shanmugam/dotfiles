@@ -43,3 +43,4 @@ keymap.set('x', '<TAB>', '<Plug>(doge-comment-jump-forward)')
 keymap.set('x', '<S-TAB>', '<Plug>(doge-comment-jump-backward)')
 
 
+require('fzf-lua').register_ui_select()
