@@ -37,3 +37,11 @@ node -v # Should print "v22.17.0".
 nvm current # Should print "v22.17.0".
 # Verify npm version:
 npm -v # Should print "10.9.2".
+
+# Set up ipython
+
+source ${VIRTUAL_ENV_DIR}/python310/bin/activate 
+ipython profile create
+echo "c.InteractiveShellApp.extensions = ['autoreload']" >> /home/arjun.shanmugam/.ipython/profile_default/ipython_config.py
+echo "c.InteractiveShellApp.exec_lines = ['%autoreload 2']" >> /home/arjun.shanmugam/.ipython/profile_default/ipython_config.py
+echo "c.InteractiveShellApp.exec_lines.append(\'print(\"Warning: disable autoreload in ipython_config.py to improve performance.\")\')" >> /home/arjun.shanmugam/.ipython/profile_default/ipython_config.py
