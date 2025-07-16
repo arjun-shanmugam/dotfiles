@@ -40,6 +40,7 @@ npm -v # Should print "10.9.2".
 
 # Set up ipython
 source ${VIRTUAL_ENV_DIR}/python310/bin/activate 
+rm /home/arjun.shanmugam/.ipython/profile_default/ipython_config.py
 ipython profile create
 echo "c.InteractiveShellApp.extensions = ['autoreload']" >> /home/arjun.shanmugam/.ipython/profile_default/ipython_config.py
 echo "c.InteractiveShellApp.exec_lines = ['%autoreload 2']" >> /home/arjun.shanmugam/.ipython/profile_default/ipython_config.py
