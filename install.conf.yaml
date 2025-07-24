@@ -22,13 +22,6 @@
       command: curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && rm -rvf /opt/nvim && tar -C /opt -xzf nvim-linux-x86_64.tar.gz && alias nvim='/opt/nvim/bin/nvim'
 
 
-
-# mac-only setup
-- install-brew: true
-
-- brew:
-    - ripgrep
-
 - link:
     ~/.config/kitty: 
         path: kitty
