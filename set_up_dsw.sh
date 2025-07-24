@@ -15,9 +15,8 @@ cd ~
 
 # Create alias 
 alias nvim='source ${VIRTUAL_ENV_DIR}/python310/bin/activate && /opt/nvim-linux-x86_64/bin/nvim'
+alias activate_ipython='source ${VIRTUAL_ENV_DIR}/python310/bin/activate && cd /home/arjun.shanmugam/arjun.shanmugam_nfs/brand_data_science/ && ipython'
 export VIRTUAL_ENV="${VIRTUAL_ENV_DIR}/python310"
-
-# Add copilot token
 
 
 # Install tpix 

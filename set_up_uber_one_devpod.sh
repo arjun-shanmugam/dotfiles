@@ -14,11 +14,8 @@ tar -xzf /home/user/.local/state/nvim.tar.gz -C /home/arjun.shanmugam/.config
 cd ~
 
 # Create alias 
-alias nvim='source ${VIRTUAL_ENV_DIR}/python310/bin/activate && /opt/nvim-linux-x86_64/bin/nvim'
-export VIRTUAL_ENV="${VIRTUAL_ENV_DIR}/python310"
-
-# Add copilot token
-
+alias nvim='/opt/nvim-linux-x86_64/bin/nvim'
+alias activate_ipython='ipython'
 
 # Install tpix 
 cd
@@ -39,12 +36,11 @@ nvm current # Should print "v22.17.0".
 npm -v # Should print "10.9.2".
 
 # Set up ipython
-source ${VIRTUAL_ENV_DIR}/python310/bin/activate 
-rm /home/user/.ipython/profile_default/ipython_config.py
+rm -v /home/user/.ipython/profile_default/ipython_config.py
 ipython profile create
-echo "c.InteractiveShellApp.extensions = ['autoreload']" >> /home/arjun.shanmugam/.ipython/profile_default/ipython_config.py
-echo "c.InteractiveShellApp.exec_lines = ['%autoreload 2']" >> /home/arjun.shanmugam/.ipython/profile_default/ipython_config.py
-echo "c.InteractiveShellApp.exec_lines.append('print(\"Warning: disable autoreload in ipython_config.py to improve performance.\")')" >> /home/arjun.shanmugam/.ipython/profile_default/ipython_config.py 
+echo "c.InteractiveShellApp.extensions = ['autoreload']" >> /home/user/.ipython/profile_default/ipython_config.py
+echo "c.InteractiveShellApp.exec_lines = ['%autoreload 2']" >> /home/user/.ipython/profile_default/ipython_config.py
+echo "c.InteractiveShellApp.exec_lines.append('print(\"Warning: disable autoreload in ipython_config.py to improve performance.\")')" >> /home/user/.ipython/profile_default/ipython_config.py 
 
 
 
