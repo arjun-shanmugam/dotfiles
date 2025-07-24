@@ -3,30 +3,31 @@
       relink: true
       create: true
     shell:
-      quiet: true
+      quiet: false
+      stderr: true
     brew:
       stdout: true
+      stderr: true
     cask:
       stdout: true
+      stderr: true
 - shell:
-    - description: Installing zoxide if not installed...
-      command: |
-        if ! command -v zoxide &> /dev/null
-        then
-          curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
-        fi
+    - description: Installing zoxide
+      command: curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+- shell:
+    - description: Installing kitty
+      command: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+- shell:
+    - description: Installing neovim 
+      command: curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && rm -rvf /opt/nvim && tar -C /opt -xzf nvim-linux-x86_64.tar.gz && alias nvim='/opt/nvim/bin/nvim'
+
+
 
 # mac-only setup
 - install-brew: true
 
 - brew:
-    - git
-    - neovim
-    - zoxide
     - ripgrep
-
-- cask:
-    - kitty
 
 - link:
     ~/.config/kitty: 
