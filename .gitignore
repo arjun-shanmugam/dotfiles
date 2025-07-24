@@ -1,6 +1,9 @@
 .DS_store
 
 nvim/lazy-lock.json
+
 github/hosts.yml
-fish/fish_variables
-fish/conf.d
+nvim-*
+nvim.tar.gz
+tpix
+tpix*
