@@ -19,8 +19,24 @@
       command: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 - shell:
     - description: Installing neovim 
-      command: curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && rm -rvf /opt/nvim && tar -C /opt -xzf nvim-linux-x86_64.tar.gz && alias nvim='/opt/nvim/bin/nvim'
-
+      command: |
+        if [[ "$(uname)" == "Linux" ]]; then
+          cd ~ && curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && rm -rvf /opt/nvim && tar -C /opt -xzf nvim-linux-x86_64.tar.gz && alias nvim=/opt/nvim/bin/nvim
+        elif [[ "$(uname)" == "Darwin" ]]; then
+          cd ~ && curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-x86_64.tar.gz && rm -rvf /opt/nvim && tar -C /opt -xzf nvim-macos-x86_64.tar.gz && alias nvim=/opt/nvim/bin/nvim
+        fi
+        
+- shell:
+    - description: Installing tpix 
+      command: |
+        if [[ "$(uname)" == "Linux" ]]; then
+          cd ~ && curl -LO https://github.com/jesvedberg/tpix/releases/download/v1.0.3/tpix-1.0.3-x86_64-linux.tar.gz && tar xzf tpix-1.0.3-x86_64-linux.tar.gz && alias tpix=~/tpix
+        elif [[ "$(uname)" == "Darwin" ]]; then 
+          cd ~ && curl -LO https://github.com/jesvedberg/tpix/releases/download/v1.0.3/tpix-1.0.3-x86_64-macosx.tar.gz && tar xzf tpix-1.0.3-x86_64-macosx.tar.gz && alias tpix=~/tpix
+        fi
+- shell:
+    - description: Installing nvm 
+      command: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash && \. "$HOME/.nvm/nvm.sh" && nvm install 22 && node -v  && nvm current  && npm -v
 
 - link:
     ~/.config/kitty: 
