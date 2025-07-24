@@ -12,9 +12,6 @@
       stdout: true
       stderr: true
 - shell:
-    - description: Installing zoxide
-      command: curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-- shell:
     - description: Installing kitty
       command: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 - shell:
