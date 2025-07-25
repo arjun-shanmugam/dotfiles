@@ -41,16 +41,19 @@
         relink: true
         force: true
         create: true
+        type: hardlink
     ~/.config/nvim:
         path: nvim
         relink: true
         force: true
         create: true
+        type: hardlink
     ~/.gitconfig: 
         path: git/.gitconfig
         relink: true
         force: true
         create: true
+        type: hardlink
 
 
 
