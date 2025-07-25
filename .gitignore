@@ -7,3 +7,5 @@ nvim-*
 nvim.tar.gz
 tpix
 tpix*
+*.swp
+.nvimlog
