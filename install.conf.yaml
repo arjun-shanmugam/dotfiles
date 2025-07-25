@@ -18,9 +18,9 @@
     - description: Installing neovim 
       command: |
         if [[ "$(uname)" == "Linux" ]]; then
-          curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && chmod 777 nvim-linux-x86_64.tar.gz && rm -rvf /opt/nvim && tar -C /opt -xzf nvim-linux-x86_64.tar.gz && alias nvim=/opt/nvim/bin/nvim
+          curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && rm -rvf /opt/nvim* && tar -C /opt -xzf nvim-linux-x86_64.tar.gz && alias nvim=/opt/nvim/bin/nvim
         elif [[ "$(uname)" == "Darwin" ]]; then
-          curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-x86_64.tar.gz &&   chmod 777 nvim-linux-x86_64.tar.gz  && rm -rvf /opt/nvim && tar -C /opt -xzf nvim-macos-x86_64.tar.gz && alias nvim=/opt/nvim/bin/nvim
+          curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-x86_64.tar.gz && rm -rvf /opt/nvim* && tar -C /opt -xzf nvim-macos-x86_64.tar.gz && alias nvim=/opt/nvim/bin/nvim
         fi
         
 - shell:
