@@ -41,12 +41,18 @@
     $HOME/.config/kitty: 
         path: kitty
         create: true
+        force: true
+        relink: true
     $HOME/.config/nvim:
         path: nvim
         create: true
+        force: true
+        relink: true
     $HOME/.gitconfig: 
         path: git/.gitconfig
         create: true
+        force: true
+        relink: true
 
 
 
