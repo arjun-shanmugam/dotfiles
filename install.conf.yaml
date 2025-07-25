@@ -36,17 +36,14 @@
       command: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash && \. "$HOME/.nvm/nvm.sh" && nvm install 22 && node -v  && nvm current  && npm -v
 
 - link:
-    $HOME/.config/kitty: 
+    ~/.config/kitty: 
         path: kitty
-        force: true
         create: true
-    $HOME/.config/nvim:
+    ~/.config/nvim:
         path: nvim
-        force: true
         create: true
-    $HOME/.gitconfig: 
+    ~/.gitconfig: 
         path: git/.gitconfig
-        force: true
         create: true
 
 
