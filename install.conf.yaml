@@ -38,13 +38,19 @@
 - link:
     ~/.config/kitty: 
         path: kitty
+        relink: true
         force: true
+        create: true
     ~/.config/nvim:
         path: nvim
+        relink: true
         force: true
+        create: true
     ~/.gitconfig: 
         path: git/.gitconfig
+        relink: true
         force: true
+        create: true
 
 
 
