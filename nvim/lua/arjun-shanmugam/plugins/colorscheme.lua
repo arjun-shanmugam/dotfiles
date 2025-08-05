@@ -1,11 +1,11 @@
 return {
-  "catppuccin/nvim",
-  name = "catppuccin",
+  "folke/tokyonight.nvim",
+  lazy = false,
   priority = 1000,
   config = function()
-    require("catppuccin").setup()
-
-    -- setup must be called before loading
-    vim.cmd.colorscheme "catppuccin"
+    require("tokyonight").setup({
+      style = "day",
+    })
+    vim.cmd("colorscheme tokyonight")
   end,
 }
