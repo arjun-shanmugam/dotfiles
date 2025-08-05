@@ -10,30 +10,13 @@ local lsp_servers = {
   cssls = {},
   emmet_ls = {},
 
-  -- r
-  r_language_server = {},
+  
 
   -- quarto/markdown
   marksman = {
     filetypes = { "markdown", "quarto" },
   },
 
-  -- latex
-  texlab = {
-    texlab = {
-      forwardSearch = {
-        executable = '/Applications/Skim.app/Contents/SharedSupport/displayline',
-        args = { "-background", '%l', '%p', },
-      },
-      build = {
-        onSave = false,
-        args = { "%f" }
-      },
-      latexindent = {
-        modifyLineBreaks = true
-      }
-    }
-  }
 }
 
 return {
