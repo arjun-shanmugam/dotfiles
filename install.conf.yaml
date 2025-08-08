@@ -18,18 +18,18 @@
     - description: Installing neovim 
       command: |
         if [[ "$(uname)" == "Linux" ]]; then
-          curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz &&  rm -rvf $HOME/nvim* &&  tar -C $HOME -xzf nvim-linux-x86_64.tar.gz && export PATH=$HOME/nvim-linux-x86_64/bin/nvim
+          cd $HOME && curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz &&  rm -rvf $HOME/nvim* &&  tar -C $HOME -xzf nvim-linux-x86_64.tar.gz && export PATH=$HOME/nvim-linux-x86_64/bin/nvim
         elif [[ "$(uname)" == "Darwin" ]]; then
-          curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-x86_64.tar.gz &&  rm -rvf $HOME/nvim* &&  tar -C $HOME -xzf nvim-macos-x86_64.tar.gz && export PATH=$HOME/nvim-macos-x86_64/bin/nvim
+          cd $HOME && curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-x86_64.tar.gz &&  rm -rvf $HOME/nvim* &&  tar -C $HOME -xzf nvim-macos-x86_64.tar.gz && export PATH=$HOME/nvim-macos-x86_64/bin/nvim
         fi
         
 - shell:
     - description: Installing tpix 
       command: |
         if [[ "$(uname)" == "Linux" ]]; then
-          curl -LO https://github.com/jesvedberg/tpix/releases/download/v1.0.3/tpix-1.0.3-x86_64-linux.tar.gz && tar xzf tpix-1.0.3-x86_64-linux.tar.gz && export PATH=$HOME/tpix
+          cd $HOME && curl -LO https://github.com/jesvedberg/tpix/releases/download/v1.0.3/tpix-1.0.3-x86_64-linux.tar.gz && tar xzf tpix-1.0.3-x86_64-linux.tar.gz && export PATH=$HOME/tpix
         elif [[ "$(uname)" == "Darwin" ]]; then 
-          curl -LO https://github.com/jesvedberg/tpix/releases/download/v1.0.3/tpix-1.0.3-x86_64-macosx.tar.gz && tar xzf tpix-1.0.3-x86_64-macosx.tar.gz && export PATH=$HOME/tpix
+          cd $HOME && curl -LO https://github.com/jesvedberg/tpix/releases/download/v1.0.3/tpix-1.0.3-x86_64-macosx.tar.gz && tar xzf tpix-1.0.3-x86_64-macosx.tar.gz && export PATH=$HOME/tpix
         fi
 - shell:
     - description: Installing nvm 
