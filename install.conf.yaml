@@ -27,9 +27,9 @@
     - description: Installing tpix 
       command: |
         if [[ "$(uname)" == "Linux" ]]; then
-          cd $HOME && curl -LO https://github.com/jesvedberg/tpix/releases/download/v1.0.3/tpix-1.0.3-x86_64-linux.tar.gz && tar xzf tpix-1.0.3-x86_64-linux.tar.gz && export PATH=$HOME/tpix
+          cd $HOME && curl -LO https://github.com/jesvedberg/tpix/releases/download/v1.0.3/tpix-1.0.3-x86_64-linux.tar.gz && tar -C $HOME -xzf tpix-1.0.3-x86_64-linux.tar.gz && export PATH=$HOME/tpix
         elif [[ "$(uname)" == "Darwin" ]]; then 
-          cd $HOME && curl -LO https://github.com/jesvedberg/tpix/releases/download/v1.0.3/tpix-1.0.3-x86_64-macosx.tar.gz && tar xzf tpix-1.0.3-x86_64-macosx.tar.gz && export PATH=$HOME/tpix
+          cd $HOME && curl -LO https://github.com/jesvedberg/tpix/releases/download/v1.0.3/tpix-1.0.3-x86_64-macosx.tar.gz && tar -C $HOME -xzf tpix-1.0.3-x86_64-macosx.tar.gz && export PATH=$HOME/tpix
         fi
 - shell:
     - description: Installing nvm 
