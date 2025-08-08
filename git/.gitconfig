@@ -1,3 +1,5 @@
 [user]
 	name = Arjun Shanmugam
 	email = arjun.shanmugam@uber.com
+[commit]
+	gpgsign = false
