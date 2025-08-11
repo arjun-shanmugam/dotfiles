@@ -27,9 +27,9 @@
     - description: Installing tpix 
       command: |
         if [[ "$(uname)" == "Linux" ]]; then
-          cd $HOME && curl -LO https://github.com/jesvedberg/tpix/releases/download/v1.0.3/tpix-1.0.3-x86_64-linux.tar.gz && mkdir -p $HOME/.bin && tar -C $HOME/.bin -xzf $HOME/tpix-1.0.3-x86_64-linux.tar.gz
+          curl -LO https://github.com/jesvedberg/tpix/releases/download/v1.0.3/tpix-1.0.3-x86_64-linux.tar.gz && mkdir -p $HOME/.bin && tar -C $HOME/.bin -xzf tpix-1.0.3-x86_64-linux.tar.gz
         elif [[ "$(uname)" == "Darwin" ]]; then 
-          cd $HOME && curl -LO https://github.com/jesvedberg/tpix/releases/download/v1.0.3/tpix-1.0.3-x86_64-macosx.tar.gz && mkdir -p $HOME/.bin && tar -C $HOME/.bin -xzf $HOME/tpix-1.0.3-x86_64-macosx.tar.gz
+          curl -LO https://github.com/jesvedberg/tpix/releases/download/v1.0.3/tpix-1.0.3-x86_64-macosx.tar.gz && mkdir -p $HOME/.bin && tar -C $HOME/.bin -xzf tpix-1.0.3-x86_64-macosx.tar.gz
         fi
       stdout: true
       stderr: true
