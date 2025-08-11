@@ -31,6 +31,8 @@
         elif [[ "$(uname)" == "Darwin" ]]; then 
           cd $HOME && curl -LO https://github.com/jesvedberg/tpix/releases/download/v1.0.3/tpix-1.0.3-x86_64-macosx.tar.gz && mkdir -p $HOME/.bin && tar -C $HOME/.bin -xzf tpix-1.0.3-x86_64-macosx.tar.gz
         fi
+      stdout: true
+      stderr: true
 - shell:
     - description: Installing nvm 
       command: |
