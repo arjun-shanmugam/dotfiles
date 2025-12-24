@@ -20,7 +20,7 @@
         if [[ "$(uname)" == "Linux" ]]; then
           curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz &&  rm -rvf $HOME/nvim* && tar -C $HOME -xzf nvim-linux-x86_64.tar.gz
         elif [[ "$(uname)" == "Darwin" ]]; then
-          curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-x86_64.tar.gz &&  rm -rvf $HOME/nvim* && tar -C $HOME -xzf nvim-macos-x86_64.tar.gz
+          curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-macos-arm64.tar.gz &&  rm -rvf $HOME/nvim* && tar -C $HOME -xzf nvim-macos-arm64.tar.gz
         fi
         
 - shell:
@@ -29,7 +29,7 @@
         if [[ "$(uname)" == "Linux" ]]; then
           curl -LO https://github.com/jesvedberg/tpix/releases/download/v1.0.3/tpix-1.0.3-x86_64-linux.tar.gz && mkdir -p $HOME/.bin && tar -C $HOME/.bin -xzf tpix-1.0.3-x86_64-linux.tar.gz
         elif [[ "$(uname)" == "Darwin" ]]; then 
-          curl -LO https://github.com/jesvedberg/tpix/releases/download/v1.0.3/tpix-1.0.3-x86_64-macosx.tar.gz && mkdir -p $HOME/.bin && tar -C $HOME/.bin -xzf tpix-1.0.3-x86_64-macosx.tar.gz
+          echo "Not installing image viewer on Apple Silicon machine"
         fi
       stdout: true
       stderr: true
@@ -55,8 +55,8 @@
         elif [[ "$(uname)" == "Darwin" ]]; then
           export PATH="$HOME/.bin:$PATH"
           echo "export PATH=\"$HOME/.bin:$PATH\"" >> $HOME/.path
-          export PATH="$HOME/nvim-macos-x86_64/bin:$PATH"
-          echo "export PATH=\"$HOME/nvim-macos-x86_64/bin:$PATH\"" >> $HOME/.path
+          export PATH="$HOME/nvim-macos-arm64/bin:$PATH"
+          echo "export PATH=\"$HOME/nvim-macos-arm64/bin:$PATH\"" >> $HOME/.path
         fi
       stdout: true
       stderr: true
