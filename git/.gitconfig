@@ -1,10 +1,1 @@
-[user]
-	name = Arjun Shanmugam
-	email = arjun.shanmugam@uber.com
-	signingkey = 
-[commit]
-	gpgsign = true
-[gpg]
-	format = x509
-[gpg "x509"]
-	program = /opt/uber/bin/signingfx
+

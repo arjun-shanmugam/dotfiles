@@ -23,11 +23,11 @@ return {
       inline = {
         keymaps = {
           accept_change = {
-            modes = { n = "A" },
+            modes = { n = "<leader>A" },
             description = "Accept the suggested change",
           },
           reject_change = {
-            modes = { n = "R" },
+            modes = { n = "<leader>R" },
             opts = { nowait = true },
             description = "Reject the suggested change",
           },
