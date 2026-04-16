@@ -37,13 +37,17 @@ local function open_url()
     vim.notify('No URL found under cursor', vim.log.levels.WARN)
     return
   end
+  -- Try neovim env first, then ask the shell (handles cases where neovim
+  -- was launched before KITTY_LISTEN_ON was set in the shell)
   local kitty_socket = vim.env.KITTY_LISTEN_ON
-  if not kitty_socket then
-    vim.notify('KITTY_LISTEN_ON not set — are you connected via kitten ssh?', vim.log.levels.ERROR)
+  if not kitty_socket or kitty_socket == '' then
+    kitty_socket = vim.fn.system('sh -c "echo -n $KITTY_LISTEN_ON"')
+  end
+  if not kitty_socket or kitty_socket == '' then
+    vim.notify('KITTY_LISTEN_ON not set — restart kitty and reconnect via kitten ssh', vim.log.levels.ERROR)
     return
   end
   vim.notify('Opening: ' .. url, vim.log.levels.INFO)
-  -- Pass --to explicitly so kitten @ doesn't need /dev/tty to find the socket
   local result = vim.fn.system({ 'kitten', '@', '--to', kitty_socket, 'launch', '--type=background', '--', 'open', url })
   if vim.v.shell_error ~= 0 then
     vim.notify('Failed to open URL: ' .. result, vim.log.levels.ERROR)
