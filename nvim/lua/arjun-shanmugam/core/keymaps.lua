@@ -37,10 +37,14 @@ local function open_url()
     vim.notify('No URL found under cursor', vim.log.levels.WARN)
     return
   end
+  local kitty_socket = vim.env.KITTY_LISTEN_ON
+  if not kitty_socket then
+    vim.notify('KITTY_LISTEN_ON not set — are you connected via kitten ssh?', vim.log.levels.ERROR)
+    return
+  end
   vim.notify('Opening: ' .. url, vim.log.levels.INFO)
-  -- kitten @ launch runs the command on the LOCAL machine via the kitty socket
-  -- that kitten ssh forwards back; 'open' on macOS opens URLs in the browser
-  local result = vim.fn.system({ 'kitten', '@', 'launch', '--type=background', '--', 'open', url })
+  -- Pass --to explicitly so kitten @ doesn't need /dev/tty to find the socket
+  local result = vim.fn.system({ 'kitten', '@', '--to', kitty_socket, 'launch', '--type=background', '--', 'open', url })
   if vim.v.shell_error ~= 0 then
     vim.notify('Failed to open URL: ' .. result, vim.log.levels.ERROR)
   end
