@@ -31,8 +31,17 @@ keymap.set("v", "rr", "<cmd>ToggleTermSendVisualLines<cr>", { desc = "Run curren
 
 -- Open URL under cursor via kitten (works over kitten ssh)
 local function open_url()
-  local url = vim.fn.expand('<cfile>')
-  vim.fn.jobstart({ 'sh', '-c', 'kitten open ' .. vim.fn.shellescape(url) }, { detach = true })
+  -- <cWORD> gets the full non-whitespace word, better than <cfile> for URLs
+  local url = vim.fn.expand('<cWORD>'):match('https?://[^%s]+')
+  if not url then
+    vim.notify('No URL found under cursor', vim.log.levels.WARN)
+    return
+  end
+  vim.notify('Opening: ' .. url, vim.log.levels.INFO)
+  local result = vim.fn.system('sh -c ' .. vim.fn.shellescape('kitten open ' .. vim.fn.shellescape(url)))
+  if vim.v.shell_error ~= 0 then
+    vim.notify('kitten open failed: ' .. result, vim.log.levels.ERROR)
+  end
 end
 keymap.set("n", "gx", open_url, { desc = "Open URL" })
 keymap.set("n", "<C-LeftMouse>", open_url, { desc = "Open URL" })
