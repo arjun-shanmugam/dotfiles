@@ -29,29 +29,35 @@ keymap.set("t", "<esc>", "<C-\\><C-n>", { desc = "Leave terminal mode" })
 keymap.set("n", "rr", "<cmd>ToggleTermSendCurrentLine<cr>", { desc = "Run current line" })
 keymap.set("v", "rr", "<cmd>ToggleTermSendVisualLines<cr>", { desc = "Run current lines" })
 
--- Open URL under cursor via kitten (works over kitten ssh)
+-- Open URL under cursor via kitten ssh, falling back to clipboard copy
+local function find_kitty_socket()
+  local s = vim.env.KITTY_LISTEN_ON
+  if s and s ~= '' then return s end
+  s = vim.fn.system('sh -c "echo -n $KITTY_LISTEN_ON"')
+  if s ~= '' then return s end
+  -- kitten ssh may forward the socket to a temp path
+  s = vim.fn.system('ls /tmp/.kitty-ssh-* 2>/dev/null | head -1'):gsub('%s+$', '')
+  if s ~= '' then return 'unix:' .. s end
+  return nil
+end
+
 local function open_url()
-  -- <cWORD> gets the full non-whitespace word, better than <cfile> for URLs
   local url = vim.fn.expand('<cWORD>'):match('https?://[^%s]+')
   if not url then
     vim.notify('No URL found under cursor', vim.log.levels.WARN)
     return
   end
-  -- Try neovim env first, then ask the shell (handles cases where neovim
-  -- was launched before KITTY_LISTEN_ON was set in the shell)
-  local kitty_socket = vim.env.KITTY_LISTEN_ON
-  if not kitty_socket or kitty_socket == '' then
-    kitty_socket = vim.fn.system('sh -c "echo -n $KITTY_LISTEN_ON"')
+  local kitty_socket = find_kitty_socket()
+  if kitty_socket then
+    local result = vim.fn.system({ 'kitten', '@', '--to', kitty_socket, 'launch', '--type=background', '--', 'open', url })
+    if vim.v.shell_error == 0 then
+      vim.notify('Opened: ' .. url, vim.log.levels.INFO)
+      return
+    end
   end
-  if not kitty_socket or kitty_socket == '' then
-    vim.notify('KITTY_LISTEN_ON not set — restart kitty and reconnect via kitten ssh', vim.log.levels.ERROR)
-    return
-  end
-  vim.notify('Opening: ' .. url, vim.log.levels.INFO)
-  local result = vim.fn.system({ 'kitten', '@', '--to', kitty_socket, 'launch', '--type=background', '--', 'open', url })
-  if vim.v.shell_error ~= 0 then
-    vim.notify('Failed to open URL: ' .. result, vim.log.levels.ERROR)
-  end
+  -- Fallback: copy to local clipboard via OSC 52
+  vim.fn.setreg('+', url)
+  vim.notify('URL copied to clipboard: ' .. url, vim.log.levels.INFO)
 end
 
 -- Debug helper: run :KittyDebug inside neovim to check what kitty env vars are available
