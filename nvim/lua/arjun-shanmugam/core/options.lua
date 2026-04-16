@@ -1,7 +1,23 @@
 -- tree display format when navigating filesystem using nvim
 vim.cmd("let g:netrw_liststyle = 3")
 
+-- OSC 52 clipboard — lets yanks reach the local clipboard over SSH
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}
 
+-- Open URLs on the local machine via kitty remote control
+vim.ui.open = function(url)
+  vim.fn.jobstart({ 'kitten', 'open', url }, { detach = true })
+end
 
 local opt = vim.opt
 opt.relativenumber = true  -- show line numbers relative to current line
