@@ -29,48 +29,17 @@ keymap.set("t", "<esc>", "<C-\\><C-n>", { desc = "Leave terminal mode" })
 keymap.set("n", "rr", "<cmd>ToggleTermSendCurrentLine<cr>", { desc = "Run current line" })
 keymap.set("v", "rr", "<cmd>ToggleTermSendVisualLines<cr>", { desc = "Run current lines" })
 
--- Open URL under cursor via kitten ssh, falling back to clipboard copy
-local function find_kitty_socket()
-  local s = vim.env.KITTY_LISTEN_ON
-  if s and s ~= '' then return s end
-  -- Search the filesystem for the forwarded kitty socket
-  s = vim.fn.system('ls /tmp/kitty-* 2>/dev/null | head -1'):gsub('%s+$', '')
-  if s ~= '' then return 'unix:' .. s end
-  return nil
-end
-
-local function open_url()
+-- Copy URL under cursor to clipboard (via OSC 52, works over SSH)
+local function copy_url()
   local url = vim.fn.expand('<cWORD>'):match('https?://[^%s]+')
   if not url then
     vim.notify('No URL found under cursor', vim.log.levels.WARN)
     return
   end
-  local kitty_socket = find_kitty_socket()
-  if kitty_socket then
-    local result = vim.fn.system({ 'kitten', '@', '--to', kitty_socket, 'launch', '--type=background', '--', 'open', url })
-    if vim.v.shell_error == 0 then
-      vim.notify('Opened: ' .. url, vim.log.levels.INFO)
-      return
-    end
-  end
-  -- Fallback: copy to local clipboard via OSC 52
   vim.fn.setreg('+', url)
-  vim.notify('URL copied to clipboard: ' .. url, vim.log.levels.INFO)
+  vim.notify('URL copied: ' .. url, vim.log.levels.INFO)
 end
-
--- Debug helper: run :KittyDebug inside neovim to check what kitty env vars are available
-vim.api.nvim_create_user_command('KittyDebug', function()
-  local vars = { 'KITTY_LISTEN_ON', 'KITTY_WINDOW_ID', 'KITTY_PID', 'TERM' }
-  local lines = {}
-  for _, v in ipairs(vars) do
-    table.insert(lines, v .. ' = ' .. (vim.env[v] or '(not set)'))
-  end
-  local shell_val = vim.fn.system('sh -c "echo -n $KITTY_LISTEN_ON"')
-  table.insert(lines, 'shell KITTY_LISTEN_ON = ' .. (shell_val == '' and '(empty)' or shell_val))
-  vim.notify(table.concat(lines, '\n'), vim.log.levels.INFO)
-end, {})
-keymap.set("n", "gx", open_url, { desc = "Open URL" })
-keymap.set("n", "<C-LeftMouse>", open_url, { desc = "Open URL" })
+keymap.set("n", "gx", copy_url, { desc = "Copy URL to clipboard" })
 
 -- Vim Doge (auto generate docstrings)
 
