@@ -15,8 +15,10 @@ vim.g.clipboard = {
 }
 
 -- Open URLs on the local machine via kitty remote control
+-- Requires connecting with `kitten ssh` instead of plain `ssh`
 vim.ui.open = function(url)
-  vim.fn.jobstart({ 'kitten', 'open', url }, { detach = true })
+  local open_url = type(url) == 'string' and url or tostring(url)
+  vim.fn.jobstart({ 'kitten', 'open', open_url }, { detach = true })
 end
 
 local opt = vim.opt
