@@ -60,6 +60,17 @@
         fi
       stdout: true
       stderr: true
+- shell:
+    - description: Sourcing dotfiles in shell rc files
+      command: |
+        DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
+        for rc in "$HOME/.bashrc" "$HOME/.zshrc"; do
+          if [ -f "$rc" ]; then
+            grep -qF '# dotfiles' "$rc" || echo -e '\n# dotfiles\n[ -f "$HOME/.path" ] && source "$HOME/.path"' >> "$rc"
+          fi
+        done
+      stdout: true
+      stderr: true
 - link:
     $HOME/.config/kitty: 
         path: kitty
@@ -73,16 +84,6 @@
         relink: true
     $HOME/.gitconfig:
         path: git/.gitconfig
-        create: true
-        force: true
-        relink: true
-    $HOME/.bashrc:
-        path: bashrc
-        create: true
-        force: true
-        relink: true
-    $HOME/.zshrc:
-        path: zshrc
         create: true
         force: true
         relink: true
