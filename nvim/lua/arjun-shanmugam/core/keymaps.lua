@@ -33,10 +33,8 @@ keymap.set("v", "rr", "<cmd>ToggleTermSendVisualLines<cr>", { desc = "Run curren
 local function find_kitty_socket()
   local s = vim.env.KITTY_LISTEN_ON
   if s and s ~= '' then return s end
-  s = vim.fn.system('sh -c "echo -n $KITTY_LISTEN_ON"')
-  if s ~= '' then return s end
-  -- kitten ssh may forward the socket to a temp path
-  s = vim.fn.system('ls /tmp/.kitty-ssh-* 2>/dev/null | head -1'):gsub('%s+$', '')
+  -- Search the filesystem for the forwarded kitty socket
+  s = vim.fn.system('ls /tmp/kitty-* 2>/dev/null | head -1'):gsub('%s+$', '')
   if s ~= '' then return 'unix:' .. s end
   return nil
 end
