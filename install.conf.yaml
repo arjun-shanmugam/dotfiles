@@ -71,8 +71,18 @@
         create: true
         force: true
         relink: true
-    $HOME/.gitconfig: 
+    $HOME/.gitconfig:
         path: git/.gitconfig
+        create: true
+        force: true
+        relink: true
+    $HOME/.bashrc:
+        path: bashrc
+        create: true
+        force: true
+        relink: true
+    $HOME/.zshrc:
+        path: zshrc
         create: true
         force: true
         relink: true
