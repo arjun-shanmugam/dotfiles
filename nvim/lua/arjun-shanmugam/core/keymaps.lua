@@ -53,6 +53,18 @@ local function open_url()
     vim.notify('Failed to open URL: ' .. result, vim.log.levels.ERROR)
   end
 end
+
+-- Debug helper: run :KittyDebug inside neovim to check what kitty env vars are available
+vim.api.nvim_create_user_command('KittyDebug', function()
+  local vars = { 'KITTY_LISTEN_ON', 'KITTY_WINDOW_ID', 'KITTY_PID', 'TERM' }
+  local lines = {}
+  for _, v in ipairs(vars) do
+    table.insert(lines, v .. ' = ' .. (vim.env[v] or '(not set)'))
+  end
+  local shell_val = vim.fn.system('sh -c "echo -n $KITTY_LISTEN_ON"')
+  table.insert(lines, 'shell KITTY_LISTEN_ON = ' .. (shell_val == '' and '(empty)' or shell_val))
+  vim.notify(table.concat(lines, '\n'), vim.log.levels.INFO)
+end, {})
 keymap.set("n", "gx", open_url, { desc = "Open URL" })
 keymap.set("n", "<C-LeftMouse>", open_url, { desc = "Open URL" })
 
