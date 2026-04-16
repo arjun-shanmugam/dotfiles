@@ -38,9 +38,11 @@ local function open_url()
     return
   end
   vim.notify('Opening: ' .. url, vim.log.levels.INFO)
-  local result = vim.fn.system('sh -c ' .. vim.fn.shellescape('kitten open ' .. vim.fn.shellescape(url)))
+  -- kitten @ launch runs the command on the LOCAL machine via the kitty socket
+  -- that kitten ssh forwards back; 'open' on macOS opens URLs in the browser
+  local result = vim.fn.system({ 'kitten', '@', 'launch', '--type=background', '--', 'open', url })
   if vim.v.shell_error ~= 0 then
-    vim.notify('kitten open failed: ' .. result, vim.log.levels.ERROR)
+    vim.notify('Failed to open URL: ' .. result, vim.log.levels.ERROR)
   end
 end
 keymap.set("n", "gx", open_url, { desc = "Open URL" })
