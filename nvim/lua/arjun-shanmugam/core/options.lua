@@ -14,6 +14,12 @@ vim.g.clipboard = {
   },
 }
 
+-- Open URLs via kitten open (works over kitten ssh)
+vim.ui.open = function(url)
+  local open_url = type(url) == 'string' and url or tostring(url)
+  vim.fn.jobstart({ 'kitten', 'open', open_url }, { detach = true })
+end
+
 local opt = vim.opt
 opt.relativenumber = true  -- show line numbers relative to current line
 opt.number = true  -- show absolute number of current line 
