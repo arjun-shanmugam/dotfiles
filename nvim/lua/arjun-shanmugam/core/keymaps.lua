@@ -29,6 +29,14 @@ keymap.set("t", "<esc>", "<C-\\><C-n>", { desc = "Leave terminal mode" })
 keymap.set("n", "rr", "<cmd>ToggleTermSendCurrentLine<cr>", { desc = "Run current line" })
 keymap.set("v", "rr", "<cmd>ToggleTermSendVisualLines<cr>", { desc = "Run current lines" })
 
+-- Open URL under cursor via kitten (works over kitten ssh)
+local function open_url()
+  local url = vim.fn.expand('<cfile>')
+  vim.fn.jobstart({ 'sh', '-c', 'kitten open ' .. vim.fn.shellescape(url) }, { detach = true })
+end
+keymap.set("n", "gx", open_url, { desc = "Open URL" })
+keymap.set("n", "<C-LeftMouse>", open_url, { desc = "Open URL" })
+
 -- Vim Doge (auto generate docstrings)
 
 -- Generate comment for current line
