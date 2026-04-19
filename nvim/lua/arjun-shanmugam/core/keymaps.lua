@@ -23,7 +23,7 @@ keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format buffer" })
 keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
 -- Terminal
-keymap.set("n", "<leader>tt", '<cmd>TermExec name="main" size=25 direction="horizontal" cmd=" " <cr>',
+keymap.set("n", "<leader>tt", '<cmd>TermExec name="main" size=70 direction="vertical" cmd=" " <cr>',
   { desc = "Open Terminal" })
 keymap.set("t", "<esc>", "<C-\\><C-n>", { desc = "Leave terminal mode" })
 keymap.set("n", "rr", "<cmd>ToggleTermSendCurrentLine<cr>", { desc = "Run current line" })
