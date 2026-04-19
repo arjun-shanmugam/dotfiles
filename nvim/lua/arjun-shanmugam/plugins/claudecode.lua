@@ -1,6 +1,20 @@
 return {
   "coder/claudecode.nvim",
-  opts = {},
+  dependencies = { "folke/snacks.nvim" },
+  opts = {
+    -- terminal_cmd = "aifx agent run claude --resume --dangerously-skip-permissions",
+    terminal = {
+      snacks_win_opts = {
+        position = "bottom",
+        height = 0.45,
+        width = 1.0,
+        border = "single",
+        keys = {
+          term_normal = false, -- use global t/<esc> -> <C-\><C-n> mapping instead
+        },
+      },
+    },
+  },
   keys = {
     { "<leader>a",  "",                               desc = "+ai",               mode = { "n", "v" } },
     { "<leader>ac", "<cmd>ClaudeCode<cr>",            desc = "Toggle Claude" },
@@ -15,11 +29,7 @@ return {
       desc = "Add file",
       ft = { "NvimTree", "neo-tree", "oil" },
     },
-    opts = {
-      terminal_cmd = "aifx agent run claude --resume --dangerously-skip-permissions", -- Point to local installation
-    },
     { "<leader>A", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
     { "<leader>R", "<cmd>ClaudeCodeDiffDeny<cr>",   desc = "Deny diff" },
   },
 }
-
