@@ -2,7 +2,7 @@ return {
   "coder/claudecode.nvim",
   dependencies = { "folke/snacks.nvim" },
   opts = {
-    -- terminal_cmd = "aifx agent run claude --resume --dangerously-skip-permissions",
+    terminal_cmd = "aifx agent run claude --resume --dangerously-skip-permissions",
     terminal = {
       snacks_win_opts = {
         position = "bottom",
