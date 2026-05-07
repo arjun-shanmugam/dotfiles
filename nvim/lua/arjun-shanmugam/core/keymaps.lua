@@ -11,7 +11,12 @@ keymap.set("n", "<leader>wv", "<C-w>v", { desc = "Split window vertically" })   
 keymap.set("n", "<leader>wh", "<C-w>s", { desc = "Split window horizontally" })                 -- split window horizontally
 keymap.set("n", "<leader>we", "<C-w>=", { desc = "Make splits equal size" })                    -- make split windows equal size
 keymap.set("n", "<leader>wx", "<cmd>close<CR>", { desc = "Close current split" })               -- close current split
-keymap.set("n", "<leader>ww", "<C-w>w", { desc = "Navigate between splits" })
+keymap.set("n", "<leader>ww", function()
+  vim.cmd("wincmd w")
+  if vim.bo.buftype == "terminal" then
+    vim.cmd("stopinsert")
+  end
+end, { desc = "Navigate between splits" })
 keymap.set("n", "<leader>bo", "<cmd>tabnew<CR>", { desc = "Open new tab" })                     -- open new tab
 keymap.set("n", "<leader>bx", "<cmd>tabclose<CR>", { desc = "Close current tab" })              -- close current tab
 keymap.set("n", "<leader>bn", "<cmd>tabn<CR>", { desc = "Go to next tab" })                     -- go to next tab
