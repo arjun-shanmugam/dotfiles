@@ -9,6 +9,15 @@ return {
     vim.g.loaded_netrwPlugin = 1
 
     nvimtree.setup({
+      on_attach = function(bufnr)
+        local api = require("nvim-tree.api")
+        local function opts(desc)
+          return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+        end
+        api.config.mappings.default_on_attach(bufnr)
+        vim.keymap.set("n", "y", api.fs.copy.filename,      opts("Copy Name"))
+        vim.keymap.set("n", "Y", api.fs.copy.absolute_path, opts("Copy Absolute Path"))
+      end,
       view = {
         adaptive_size = true
       },
