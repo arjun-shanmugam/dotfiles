@@ -15,8 +15,18 @@ return {
           return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
         end
         api.config.mappings.default_on_attach(bufnr)
-        vim.keymap.set("n", "y", api.fs.copy.filename,      opts("Copy Name"))
-        vim.keymap.set("n", "Y", api.fs.copy.absolute_path, opts("Copy Absolute Path"))
+        vim.keymap.set("n", "y", function()
+          local node = api.tree.get_node_under_cursor()
+          if not node then return end
+          vim.fn.setreg(vim.v.register, node.name)
+          api.fs.copy.filename()
+        end, opts("Copy Name"))
+        vim.keymap.set("n", "Y", function()
+          local node = api.tree.get_node_under_cursor()
+          if not node then return end
+          vim.fn.setreg(vim.v.register, node.absolute_path)
+          api.fs.copy.absolute_path()
+        end, opts("Copy Absolute Path"))
       end,
       view = {
         adaptive_size = true
