@@ -21,7 +21,8 @@ return {
   },
   -- "gc" to comment visual regions/lines
   {
-    "numToStr/Comment.nvim",
+    "echasnovski/mini.comment",
+    version = "*",
     opts = {},
   },
 
