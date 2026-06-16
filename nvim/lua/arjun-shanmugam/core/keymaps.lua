@@ -26,7 +26,7 @@ keymap.set("n", "<leader>bf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 -- LSP
 -- Use conform when available (e.g. SQL via sql-formatter), fall back to LSP (e.g. Python via ruff)
 keymap.set("n", "<leader>lf", function()
-  require("conform").format({ lsp_fallback = true })
+  require("conform").format({ lsp_fallback = true, timeout_ms = 10000 })
 end, { desc = "Format buffer" })
 keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
