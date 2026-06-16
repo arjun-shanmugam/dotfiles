@@ -55,16 +55,4 @@ return {
     end
   },
 
-  {
-    "nvimtools/none-ls.nvim",
-    config = function()
-      -- Use the local variable name 'null_ls' consistently
-      local null_ls = require("null-ls")
-      null_ls.setup({
-        sources = {
-          null_ls.builtins.formatting.black,
-        }
-      })
-    end
-  },
 }
