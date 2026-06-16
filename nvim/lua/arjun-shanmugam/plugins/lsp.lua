@@ -45,7 +45,18 @@ return {
           end
         end
       },
-      { "mason-org/mason.nvim", opts = {} },
+      {
+        "mason-org/mason.nvim",
+        opts = {
+          -- Prepend local registry to override sqlfluff version before the upstream entry.
+          -- The upstream registry targets 4.2.2, which is absent from the Uber PyPI mirror;
+          -- the local registry pins it to 4.2.1 (the latest available version).
+          registries = {
+            "lua:mason-local-registry",
+            "github:mason-org/mason-registry",
+          },
+        },
+      },
     },
     config = function()
       require("mason-lspconfig").setup({

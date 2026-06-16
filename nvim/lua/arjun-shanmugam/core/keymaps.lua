@@ -24,7 +24,10 @@ keymap.set("n", "<leader>bp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) 
 keymap.set("n", "<leader>bf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) -- go to next tab
 
 -- LSP
-keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format buffer" })
+-- Use conform when available (e.g. SQL via sql-formatter), fall back to LSP (e.g. Python via ruff)
+keymap.set("n", "<leader>lf", function()
+  require("conform").format({ lsp_fallback = true })
+end, { desc = "Format buffer" })
 keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
 -- Terminal
