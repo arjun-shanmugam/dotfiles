@@ -31,7 +31,7 @@ end, { desc = "Format buffer" })
 keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
 -- Terminal
-keymap.set("n", "<leader>tt", "<cmd>ToggleTerm size=70 direction=vertical<cr>",
+keymap.set("n", "<leader>tt", "<cmd>ToggleTerm size=15 direction=horizontal<cr>",
   { desc = "Toggle Terminal" })
 keymap.set("t", "<esc>", "<C-\\><C-n>", { desc = "Leave terminal mode" })
 keymap.set("n", "rr", "<cmd>ToggleTermSendCurrentLine<cr>", { desc = "Run current line" })
@@ -48,6 +48,14 @@ local function copy_url()
   vim.notify('URL copied: ' .. url, vim.log.levels.INFO)
 end
 keymap.set("n", "gx", copy_url, { desc = "Copy URL to clipboard" })
+
+-- Yank current file's path
+keymap.set("n", "<leader>ycf", function()
+  vim.fn.setreg(vim.v.register, vim.fn.expand("%:."))
+end, { desc = "Yank relative path of current file" })
+keymap.set("n", "<leader>Ycf", function()
+  vim.fn.setreg(vim.v.register, vim.fn.expand("%:p"))
+end, { desc = "Yank absolute path of current file" })
 
 -- Vim Doge (auto generate docstrings)
 

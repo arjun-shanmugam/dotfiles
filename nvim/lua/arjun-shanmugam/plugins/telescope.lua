@@ -13,6 +13,7 @@ return { {
   config = function()
     local telescope = require("telescope")
     local actions = require("telescope.actions")
+    local action_state = require("telescope.actions.state")
 
     telescope.setup({
       defaults = {
@@ -25,6 +26,20 @@ return { {
             ["<C-k>"] = actions.move_selection_previous, -- move to prev result
             ["<C-j>"] = actions.move_selection_next,     -- move to next result
             ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+          },
+          n = {
+            ["y"] = function()
+              local entry = action_state.get_selected_entry()
+              if not entry then return end
+              local path = entry.path or entry.value
+              vim.fn.setreg(vim.v.register, vim.fn.fnamemodify(path, ":."))
+            end,
+            ["Y"] = function()
+              local entry = action_state.get_selected_entry()
+              if not entry then return end
+              local path = entry.path or entry.value
+              vim.fn.setreg(vim.v.register, vim.fn.fnamemodify(path, ":p"))
+            end,
           },
         },
       },
@@ -59,10 +74,22 @@ return { {
     -- set keymaps
     local keymap = vim.keymap
 
-    keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
+    local function toggle_picker(cmd)
+      return function()
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          local buf = vim.api.nvim_win_get_buf(win)
+          if vim.bo[buf].filetype == "TelescopePrompt" then
+            actions.close(buf)
+            return
+          end
+        end
+        vim.cmd(cmd)
+      end
+    end
+
+    keymap.set("n", "<leader>ff", toggle_picker("Telescope find_files"), { desc = "Toggle fuzzy find files in cwd" })
     keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
-    keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
+    keymap.set("n", "<leader>fs", toggle_picker("Telescope live_grep"), { desc = "Toggle find string in cwd" })
     keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
-    keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
   end,
 }, { 'nvim-telescope/telescope-ui-select.nvim' } }

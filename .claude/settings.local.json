@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tar:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m ':*)",
+      "Bash(command -v kitten)",
+      "Read(//home/user/**)",
+      "Read(//etc/skel/**)",
+      "Bash(bash:*)",
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "Bash(curl -s \"https://raw.githubusercontent.com/folke/snacks.nvim/main/lua/snacks/win.lua\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/folke/snacks.nvim/main/lua/snacks/config.lua\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/folke/snacks.nvim/main/lua/snacks/terminal.lua\")",
+      "Bash(git commit *)"
+    ]
+  }
+}

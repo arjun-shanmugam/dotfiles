@@ -5,9 +5,8 @@ return {
     terminal_cmd = "aifx agent run claude --dangerously-skip-permissions",
     terminal = {
       snacks_win_opts = {
-        position = "bottom",
-        height = 0.45,
-        width = 1.0,
+        position = "right",
+        width = 0.35,
         border = "single",
         keys = {
           term_normal = false, -- use global t/<esc> -> <C-\><C-n> mapping instead
@@ -17,7 +16,26 @@ return {
   },
   keys = {
     { "<leader>a",  "",                               desc = "+ai",               mode = { "n", "v" } },
-    { "<leader>ac", "<cmd>ClaudeCode<cr>",            desc = "Toggle Claude" },
+    {
+      "<leader>ac",
+      function()
+        vim.cmd("ClaudeCode")
+        -- If a toggleterm terminal is already open, Claude's vertical split
+        -- (tab-level) cuts across its row and shrinks its width. Force the
+        -- terminal back to a full-width window at the bottom.
+        vim.schedule(function()
+          for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+            local buf = vim.api.nvim_win_get_buf(win)
+            if vim.bo[buf].filetype == "toggleterm" then
+              vim.api.nvim_win_call(win, function()
+                vim.cmd("wincmd J")
+              end)
+            end
+          end
+        end)
+      end,
+      desc = "Toggle Claude",
+    },
     { "<leader>af", "<cmd>ClaudeCodeFocus<cr>",       desc = "Focus Claude" },
     { "<leader>ar", "<cmd>ClaudeCode --resume<cr>",   desc = "Resume Claude" },
     { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
