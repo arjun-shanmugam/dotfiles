@@ -87,6 +87,11 @@
         create: true
         force: true
         relink: true
+    $HOME/.claude/skills/todoist:
+        path: .claude/skills/todoist
+        create: true
+        force: true
+        relink: true
 
 
 
