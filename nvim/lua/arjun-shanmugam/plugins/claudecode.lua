@@ -4,6 +4,13 @@ return {
   opts = {
     terminal_cmd = "aifx agent run claude --dangerously-skip-permissions",
     terminal = {
+      -- Claude Code >= 2.1.89 renders in the terminal's alternate screen,
+      -- which leaves nvim's terminal buffer without scrollback (can't scroll
+      -- up past the visible screen in normal mode). Opt out so output stays
+      -- in the regular buffer.
+      env = {
+        CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN = "1",
+      },
       snacks_win_opts = {
         position = "right",
         width = 0.35,
