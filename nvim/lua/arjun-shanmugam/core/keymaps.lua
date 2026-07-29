@@ -37,6 +37,35 @@ keymap.set("t", "<esc>", "<C-\\><C-n>", { desc = "Leave terminal mode" })
 keymap.set("n", "rr", "<cmd>ToggleTermSendCurrentLine<cr>", { desc = "Run current line" })
 keymap.set("v", "rr", "<cmd>ToggleTermSendVisualLines<cr>", { desc = "Run current lines" })
 
+-- Swap positions of the Claude and terminal windows (only when both are open).
+-- Whichever window currently spans the full width is at the bottom; it moves to
+-- the right, and the other moves to the bottom last so it spans the full width.
+keymap.set("n", "<leader>swap", function()
+  local term_win, claude_win
+  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+    local ft = vim.bo[vim.api.nvim_win_get_buf(win)].filetype
+    if ft == "toggleterm" then
+      term_win = win
+    elseif ft == "snacks_terminal" then
+      claude_win = win
+    end
+  end
+  if not (term_win and claude_win) then
+    vim.notify("Both Claude and terminal windows must be open to swap", vim.log.levels.WARN)
+    return
+  end
+  local to_side, to_bottom
+  if vim.api.nvim_win_get_width(term_win) >= vim.o.columns then
+    to_side, to_bottom = term_win, claude_win
+  else
+    to_side, to_bottom = claude_win, term_win
+  end
+  vim.api.nvim_win_call(to_side, function() vim.cmd("wincmd L") end)
+  vim.api.nvim_win_call(to_bottom, function() vim.cmd("wincmd J") end)
+  vim.api.nvim_win_set_width(to_side, math.floor(vim.o.columns * 0.35))
+  vim.api.nvim_win_set_height(to_bottom, 15)
+end, { desc = "Swap Claude and terminal window positions" })
+
 -- Copy URL under cursor to clipboard (via OSC 52, works over SSH)
 local function copy_url()
   local url = vim.fn.expand('<cWORD>'):match('https?://[^%s]+')
