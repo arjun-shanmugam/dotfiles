@@ -47,26 +47,25 @@
     - description: Adding to path 
       command: |
         > $HOME/.path
+        echo 'export PATH="$HOME/.bin:$PATH"' >> $HOME/.path
         if [[ "$(uname)" == "Linux" ]]; then
-          export PATH="$HOME/.bin:$PATH"
-          echo "export PATH=\"$HOME/.bin:$PATH\"" >> $HOME/.path
-          export PATH="$HOME/nvim-linux-x86_64/bin:$PATH"
-          echo "export PATH=\"$HOME/nvim-linux-x86_64/bin:$PATH\"" >> $HOME/.path
+          echo 'export PATH="$HOME/nvim-linux-x86_64/bin:$PATH"' >> $HOME/.path
         elif [[ "$(uname)" == "Darwin" ]]; then
-          export PATH="$HOME/.bin:$PATH"
-          echo "export PATH=\"$HOME/.bin:$PATH\"" >> $HOME/.path
-          export PATH="$HOME/nvim-macos-arm64/bin:$PATH"
-          echo "export PATH=\"$HOME/nvim-macos-arm64/bin:$PATH\"" >> $HOME/.path
+          echo 'export PATH="$HOME/nvim-macos-arm64/bin:$PATH"' >> $HOME/.path
         fi
       stdout: true
       stderr: true
 - shell:
     - description: Sourcing dotfiles in shell rc files
       command: |
-        DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
-        for rc in "$HOME/.bashrc" "$HOME/.zshrc"; do
+        # Make sure the login shell's rc file exists; macOS bash reads ~/.bash_profile, not ~/.bashrc.
+        case "$(basename "$SHELL")" in
+          zsh) touch "$HOME/.zshrc" ;;
+          bash) if [[ "$(uname)" == "Darwin" ]]; then touch "$HOME/.bash_profile"; else touch "$HOME/.bashrc"; fi ;;
+        esac
+        for rc in "$HOME/.bashrc" "$HOME/.bash_profile" "$HOME/.zshrc"; do
           if [ -f "$rc" ]; then
-            grep -qF '# dotfiles' "$rc" || echo -e '\n# dotfiles\n[ -f "$HOME/.path" ] && source "$HOME/.path"' >> "$rc"
+            grep -qF '# dotfiles' "$rc" || printf '\n# dotfiles\n[ -f "$HOME/.path" ] && source "$HOME/.path"\n' >> "$rc"
           fi
         done
       stdout: true
