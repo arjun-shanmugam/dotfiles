@@ -2,7 +2,10 @@ return {
   "coder/claudecode.nvim",
   dependencies = { "folke/snacks.nvim" },
   opts = {
-    terminal_cmd = "aifx agent run claude --dangerously-skip-permissions",
+    -- Uber laptop wraps claude with aifx; elsewhere run claude directly.
+    terminal_cmd = vim.fn.executable("aifx") == 1
+        and "aifx agent run claude --dangerously-skip-permissions"
+      or "claude --dangerously-skip-permissions",
     -- Claude Code >= 2.1.89 renders in the terminal's alternate screen,
     -- which leaves nvim's terminal buffer without scrollback (can't scroll
     -- up past the visible screen in normal mode). Opt out so output stays
